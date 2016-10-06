@@ -1,0 +1,15 @@
+---
+spring:
+  cloud:
+    config:
+     # 8001 port for config server
+      uri: http://localhost:8001
+     
+  application:
+    name: hystrix-dashboard
+    
+
+---
+
+server:
+  port: 5555

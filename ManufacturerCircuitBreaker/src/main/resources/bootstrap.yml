@@ -1,0 +1,27 @@
+---
+spring:
+  cloud:
+    config:
+     # 8001 port for config server
+      uri: http://localhost:8001
+     
+  application:
+    name: manufacturercb-microservice
+    
+applications: consulhystrixclient
+---
+spring:
+  cloud:
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+        health-check-interval: 10s
+# Just like hystrix dashboard which is default for eureka not consul. we need to have some other dashboard for consul
+# for consul turbine dashboard     
+turbine:
+  app-config: ${applications}
+  cluster-name-expression: ${applications}
+
+        #healthCheckPath: ${management.contextPath}/health
+server:
+  port: 0
